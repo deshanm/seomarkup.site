@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Page Not Found — SEOMarkup"
+  description="The page you're looking for doesn't exist. Head back to SEOMarkup to inspect structured data on any webpage."
+  noindex={true}
+>
+
+<section class="bg-white min-h-[70vh] flex items-center py-24">
+  <div class="max-w-2xl mx-auto px-5 sm:px-6 text-center">
+
+    <p class="text-[11px] font-mono uppercase tracking-[0.15em] text-gray-400 mb-6">Error 404</p>
+
+    <h1 class="text-[6rem] sm:text-[9rem] font-bold text-black leading-none tracking-tight mb-4">
+      4<span class="text-yellow-400">0</span>4
+    </h1>
+
+    <p class="text-xl sm:text-2xl font-semibold text-black tracking-tight mb-3">
+      Page not found.
+    </p>
+    <p class="text-base text-gray-500 leading-[1.6] max-w-sm mx-auto mb-10">
+      The URL you followed doesn't exist or has moved. Here are some useful places to go instead.
+    </p>
+
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+      <a href="/"
+        class="inline-flex items-center gap-2 bg-black hover:bg-gray-800 text-white text-[15px] font-semibold py-3 px-5 rounded-lg no-underline transition-[transform,background-color] duration-200 ease-out-strong active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-400 focus:outline-none w-full sm:w-auto justify-center">
+        <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+        Go home
+      </a>
+      <a href="/resources/"
+        class="inline-flex items-center gap-2 bg-white border border-gray-200 hover:border-gray-300 text-black text-[15px] font-semibold py-3 px-5 rounded-lg no-underline transition-[transform,border-color,box-shadow] duration-200 ease-out-strong hover:shadow-sm active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-400 focus:outline-none w-full sm:w-auto justify-center">
+        Resources
+      </a>
+      <a href="/tools/"
+        class="inline-flex items-center gap-2 bg-white border border-gray-200 hover:border-gray-300 text-black text-[15px] font-semibold py-3 px-5 rounded-lg no-underline transition-[transform,border-color,box-shadow] duration-200 ease-out-strong hover:shadow-sm active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-400 focus:outline-none w-full sm:w-auto justify-center">
+        Free tools
+      </a>
+    </div>
+
+  </div>
+</section>
+
+</BaseLayout>

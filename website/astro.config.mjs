@@ -2,7 +2,6 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import mdx from '@astrojs/mdx';
-import sitemap from '@astrojs/sitemap';
 import preact from '@astrojs/preact';
 import { createRequire } from 'module';
 import path from 'path';
@@ -23,7 +22,6 @@ export default defineConfig({
   },
   integrations: [
     mdx(),
-    sitemap(),
     preact({ compat: true }),
   ],
 });
