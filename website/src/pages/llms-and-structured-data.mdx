@@ -1,0 +1,126 @@
+---
+title: "Do LLMs Actually Benefit from Structured Data? A Calibrated Answer"
+description: "A calibrated answer: what's plausibly true, what's overstated, and the practical takeaway for AI-era SEO."
+publishedAt: "2026-05-15"
+updatedAt: "2026-05-15"
+author: "Deshan M"
+layout: '../layouts/ArticleLayout.astro'
+---
+
+Since the emergence of ChatGPT, Perplexity, and Google's AI Overviews, a new wave of SEO advice has appeared: "Structured data helps LLMs understand your content." Some posts go further: "Add schema markup to rank in AI search." 
+
+This article looks at that claim carefully. The short answer: **some of it is true and grounded in how these systems actually work; some of it is speculative and possibly just old schema-markup advice repackaged for a new audience.** Here's how to tell the difference.
+
+---
+
+## What we're actually asking
+
+"LLMs benefit from structured data" could mean several different things:
+
+1. **LLMs were trained on data that included structured data** — so they learned from it
+2. **LLMs retrieve structured data at query time** (via RAG or browsing) — so they use it for answers
+3. **AI search products use structured data signals** — so it affects what they surface
+4. **Structured data makes you rank better in AI-generated answers** — so adding it improves your visibility
+
+These are four different claims, and the evidence for each is very different.
+
+---
+
+## What's plausibly true
+
+### 1. LLMs were likely trained on text that included JSON-LD
+
+The Common Crawl dataset — a primary source for most major LLM training corpora (GPT-4, LLaMA, Claude, Gemini) — includes raw HTML pages. JSON-LD blocks in `<script>` tags are part of that HTML. So yes, LLMs have "seen" structured data.
+
+What's less clear is whether this structured data meaningfully influenced what the models learned about specific entities or pages. Common Crawl is enormous (petabytes), and the relationship between any individual JSON-LD block and a model's behaviour is not something any lab has published research on.
+
+**Honest verdict:** Probably true that LLMs have been exposed to structured data. Whether it specifically improves how a model represents your site or your entities is unknown and likely small for any individual site.
+
+### 2. RAG pipelines benefit clearly from structured data
+
+Retrieval-Augmented Generation (RAG) is a technique where an LLM retrieves documents at query time and uses them as context. Structured data — whether JSON-LD, database schemas, or API responses — is genuinely useful here because:
+
+- It's machine-parseable, reducing the need for the LLM to interpret ambiguous prose
+- Fields like `Product.name`, `Offer.price`, and `AggregateRating.ratingValue` can be extracted reliably
+- Entity graphs built from structured data improve retrieval precision
+
+This is well-established in RAG research and practice. If you're building an AI application that retrieves web content, structured data helps your pipeline.
+
+For web publishers: if someone builds a RAG pipeline over web data (e.g., a vertical AI tool that indexes products, events, or recipes), your well-structured JSON-LD makes it easier for their system to understand and represent your content accurately.
+
+**Honest verdict:** True, and there's substantial engineering evidence for this. The beneficiary is primarily systems *consuming* your structured data, not the general-purpose LLMs serving search results.
+
+### 3. Google's AI Overviews use structured data as one signal
+
+Google has stated that AI Overviews use the same underlying signals as regular Search — which includes structured data. From Google's [Generative AI in Search documentation](https://developers.google.com/search/docs/appearance/ai-overviews): "The same fundamentals that make pages useful for regular Search apply."
+
+Google's rich results eligibility is a prerequisite for certain AI Overview features (e.g., product carousels in AI Overviews use Product schema). So here, structured data has a documented role.
+
+**Honest verdict:** True for Google specifically, with documentation. Structured data that qualifies you for rich results also helps with AI Overview features that build on those rich result types.
+
+### 4. Bing and Perplexity use structured data signals
+
+Bing's web index underpins both Bing Chat (Microsoft Copilot) and a portion of Perplexity's index. Bing's [webmaster guidelines](https://www.bing.com/webmasters/help/which-markup-does-bing-support-99fe9e9a) explicitly support JSON-LD, Microdata, and RDFa, and Bing uses structured data to generate rich results. Since Copilot and Perplexity's Bing-backed results draw on this index, structured data that improves your Bing rich result eligibility plausibly helps your presence in those AI products.
+
+**Honest verdict:** Indirectly true. Improving your structured data improves your Bing indexing, which is one input into AI products that use Bing's index.
+
+### 5. llms.txt is an adjacent idea
+
+The [llms.txt proposal](https://llmstxt.org/) (Jeremy Howard, 2024) suggests a standard file at `/llms.txt` that explicitly declares content for LLM consumption — analogous to `robots.txt` for crawlers. It's not JSON-LD, but it reflects the same underlying intuition: making content machine-readable for AI systems. At time of writing, no major AI lab has announced support for `llms.txt`, but the proposal exists and is worth watching.
+
+---
+
+## What's likely overstated
+
+### "Schema markup makes your content rank in ChatGPT"
+
+ChatGPT (at time of writing) has two modes:
+
+1. **Knowledge cutoff** — answers from training data. Structured data from your site might be in the training data, but there's no ranking mechanism; ChatGPT doesn't retrieve web pages at query time in this mode.
+2. **Browsing** — ChatGPT can search the web using Bing's index. Here, the same logic as Bing applies (see above), but ChatGPT synthesises answers rather than ranking pages, so "ranking" isn't quite the right frame.
+
+**Honest verdict:** The claim that "adding schema markup makes you rank in ChatGPT" confuses two things. You don't rank *in ChatGPT*; you're cited or referenced. Whether that happens depends primarily on content quality and authority, not on your JSON-LD.
+
+### "LLMs prefer sites with schema markup"
+
+There's no published evidence from Anthropic, OpenAI, Google, or Meta that training on structured data leads to models preferentially citing or surfacing pages that have JSON-LD. This is an extrapolation that sounds plausible but hasn't been demonstrated.
+
+**Honest verdict:** Unsubstantiated. Don't add schema markup primarily because you think it makes LLMs like your site more. Add it because it helps Google and Bing rich results, which *are* documented.
+
+---
+
+## The practical takeaway
+
+Here's what we can say with confidence:
+
+**Do add structured data.** The documented benefits (Google rich results, Bing rich results, AI Overview features, RAG-pipeline clarity) are real. Structured data is a clarity layer that makes your content easier for any machine reader — search engine, AI system, or developer — to understand correctly.
+
+**Don't add it primarily because of vague "AI SEO" claims.** If your motivation is "LLMs will rank me higher," you're acting on marketing copy, not evidence. Add it because it increases your eligibility for documented rich result types, which have measurable CTR effects.
+
+**The best-performing pages in AI search are the best-performing pages in regular search.** They have high-quality content, good authority, fast load times, and accurate structured data. Structured data is one part of the picture, not a shortcut.
+
+---
+
+## Frequently asked questions
+
+**Does structured data help with AI Overviews specifically?**
+Yes, for product and local business features in AI Overviews. Google's documentation confirms that the same structured data used for product rich results powers the product features in AI Overviews. Outside of those specific features, the general signal relationship is the same as for regular search.
+
+**Should I write content differently for LLMs vs. Google Search?**
+For most sites: no. Well-written, clear, accurate, well-structured content performs well in both contexts. Attempts to "write for LLMs" often result in worse content for human readers — which hurts you in regular search and likely in AI search too.
+
+**Will llms.txt help me rank in AI?**
+Unknown. No major AI product has announced support. It's worth watching and implementing if your audience is developers building with LLMs, but don't prioritise it over proven structured data practices.
+
+**What's the single most important thing I can do for AI-era SEO?**
+Be the authoritative, accurate, well-organised source for your topic. Structured data helps communicate that accuracy to machines. But accuracy is the prerequisite — structured data communicating bad or thin content isn't better than plain text.
+
+---
+
+## Recommended tools
+
+- [SEOMarkup Chrome Extension](https://chromewebstore.google.com/detail/structured-data-schema-in/gaclifbkjcockpefkcjpgggmeolckind) — inspect what structured data any page uses
+- [Google Rich Results Test](https://search.google.com/test/rich-results) — the documented eligibility check
+- [Google AI Overviews documentation](https://developers.google.com/search/docs/appearance/ai-overviews)
+- [Bing Webmaster Guidelines on structured data](https://www.bing.com/webmasters/help/which-markup-does-bing-support-99fe9e9a)
+- [llms.txt proposal](https://llmstxt.org/)

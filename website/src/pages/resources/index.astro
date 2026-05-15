@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { CHROME_STORE_URL } from '../../lib/extension-meta';
+
+const articles = [
+  {
+    slug: 'schema-cheat-sheet',
+    title: 'Schema.org Cheat Sheet: 25 Most-Used Types for SEO',
+    description: "Required and recommended properties for the 25 most common schema types, each with a valid JSON-LD example you can copy straight away.",
+    date: '2026-05-15',
+    readTime: '12 min',
+    icon: '<line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/>',
+  },
+  {
+    slug: 'how-google-uses-structured-data',
+    title: 'How Google Search Uses Structured Data (Honestly)',
+    description: "What structured data actually does for your Google rankings and what it doesn't. A calibrated look at eligibility, display, and the full verification flow.",
+    date: '2026-05-15',
+    readTime: '6 min',
+    icon: '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>',
+  },
+  {
+    slug: 'ecommerce-structured-data',
+    title: 'Structured Data for E-commerce: What You Need and Why',
+    description: "How product schema markup helps e-commerce sites win rich results in Google Search, with real, validated JSON-LD examples.",
+    date: '2026-05-15',
+    readTime: '8 min',
+    icon: '<path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>',
+  },
+  {
+    slug: 'llms-and-structured-data',
+    title: 'Do LLMs Actually Benefit from Structured Data?',
+    description: "A calibrated answer: what's plausibly true, what's overstated, and the practical takeaway for AI-era SEO.",
+    date: '2026-05-15',
+    readTime: '5 min',
+    icon: '<rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h.01M15 9h.01M9 15h6"/><path d="M9 12h6"/>',
+  },
+];
+---
+
+<BaseLayout
+  title="Structured Data Resources — Guides & Tutorials | SEOMarkup"
+  description="Free guides on structured data, JSON-LD, rich results, e-commerce schema, and the schema.org cheat sheet — by SEOMarkup."
+>
+
+<!-- Page header -->
+<section class="bg-white border-b border-gray-100 pt-14 pb-16 sm:pt-20 sm:pb-20">
+  <div class="max-w-6xl mx-auto px-5 sm:px-6 lg:px-8">
+    <p class="text-[11px] font-mono uppercase tracking-[0.15em] text-gray-500 mb-3">Resources</p>
+    <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-black tracking-tight text-balance leading-[1.1] mb-4 max-w-2xl">
+      Structured data, explained honestly.
+    </h1>
+    <p class="text-base sm:text-lg text-gray-600 leading-[1.6] max-w-xl">
+      No inflated claims. Clear, well-sourced guides on what JSON-LD does, how Google actually reads it, and when it matters.
+    </p>
+  </div>
+</section>
+
+<!-- Articles -->
+<section class="bg-gray-50 border-b border-gray-100 py-14 sm:py-20">
+  <div class="max-w-6xl mx-auto px-5 sm:px-6 lg:px-8">
+    <div class="grid gap-3">
+      {articles.map((article) => (
+        <a href={`/${article.slug}/`}
+          class="group bg-white border border-gray-200 hover:border-gray-300 hover:shadow-sm rounded-2xl p-6 sm:p-8 flex gap-5 sm:gap-7 items-start no-underline transition-[border-color,box-shadow] duration-150">
+          <div class="flex-shrink-0 w-11 h-11 rounded-xl bg-gray-50 border border-gray-200 flex items-center justify-center text-gray-500 group-hover:border-gray-300 transition-colors duration-150">
+            <svg class="w-4.5 h-4.5" style="width:18px;height:18px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={article.icon} />
+          </div>
+          <div class="min-w-0 flex-1">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="text-[11px] font-mono uppercase tracking-[0.12em] text-gray-400">{article.readTime} read</span>
+              <span class="text-gray-200" aria-hidden="true">·</span>
+              <time class="text-[11px] font-mono text-gray-400" datetime={article.date}>
+                {new Date(article.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+              </time>
+            </div>
+            <h2 class="text-[17px] sm:text-[18px] font-bold text-black tracking-tight leading-snug mb-2">{article.title}</h2>
+            <p class="text-[14px] sm:text-[15px] text-gray-600 leading-[1.6]">{article.description}</p>
+          </div>
+          <div class="hidden sm:flex flex-shrink-0 items-center self-center pl-2">
+            <svg class="w-4 h-4 text-gray-300 group-hover:text-gray-500 group-hover:translate-x-0.5 transition-all duration-150" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M9 18l6-6-6-6"/>
+            </svg>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="bg-white py-14 sm:py-20">
+  <div class="max-w-6xl mx-auto px-5 sm:px-6 lg:px-8">
+    <div class="bg-[#030712] rounded-2xl p-8 sm:p-10 flex flex-col sm:flex-row sm:items-center gap-6 sm:gap-10">
+      <div class="flex-1">
+        <p class="text-[11px] font-mono uppercase tracking-[0.15em] text-yellow-400 mb-2">Free Chrome Extension</p>
+        <h2 class="text-xl sm:text-2xl font-bold text-white tracking-tight mb-2">Inspect structured data on any website</h2>
+        <p class="text-gray-400 text-[14px] leading-relaxed">Every JSON-LD block on any page, parsed and readable. One click, no account.</p>
+      </div>
+      <a
+        href={CHROME_STORE_URL}
+        target="_blank" rel="noopener"
+        class="flex-shrink-0 inline-flex items-center gap-2.5 bg-yellow-400 hover:bg-yellow-300 text-black font-bold py-3.5 px-6 rounded-lg no-underline transition-[background-color,transform] duration-150 ease-out-strong active:scale-[0.97] whitespace-nowrap focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+      >
+        Add to Chrome — Free
+      </a>
+    </div>
+  </div>
+</section>
+
+</BaseLayout>

@@ -1,0 +1,28 @@
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+
+# Node / website
+website/node_modules/
+website/dist/
+website/.astro/
+website/.env
+website/.env.*
+!website/.env.example
+website/npm-debug.log*
+website/yarn-debug.log*
+website/yarn-error.log*
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+Thumbs.db
+ehthumbs.db

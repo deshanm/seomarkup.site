@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEO Markup Viewer</title>
+    <link rel="stylesheet" href="libs/reset/reset.css">
+    <link rel="stylesheet" href="styles.css">
+    <link href="libs/jsonTree/jsonTree.css" rel="stylesheet" />
+    <script src="libs/jsonTree/jsonTree.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="header-title" aria-label="Chrome Web Store page for Structured Data Schema Inspector">
+            <a href="https://www.seomarkup.site/#feedback-open?utm_source=extention&utm_medium=header"
+                target="_blank">
+                <img class="logo-image" src="catOnly.png" alt="Extension Logo" />
+                <h1>SEOMarkup.site <img src="icons/arrow-up-right.svg" alt="" width="12" /></h1>
+            </a>
+        </div>
+        <div class="dropdown">
+            <button class="header-cta-button" id="validate">Test With <img src="icons/chevron-down.svg" alt=""
+                    width="16" /></button>
+            <div class="dropdown-content" id="dropdown-content">
+                <a id="rich-results-link" href="https://search.google.com/test/rich-results" target="_blank">Google
+                    Test</a>
+                <a id="schema-link" href="https://validator.schema.org/" target="_blank">Schema.org Test</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="fixed-search-container">
+            <div class="search-row">
+                <input type="text" id="search-box" placeholder="Search schemas…" aria-label="Search schemas">
+                <div class="search-tools">
+                    <span id="search-count" aria-live="polite"></span>
+                    <button id="previous" title="Previous match" aria-label="Previous match"><img src="icons/arrow-up.svg" alt="" width="10" /></button>
+                    <button id="next" title="Next match" aria-label="Next match"><img src="icons/arrow-down.svg" alt="" width="10" /></button>
+                    <button id="clear" title="Clear search" aria-label="Clear search">✕</button>
+                </div>
+            </div>
+        </div>
+        <div id="loading">Loading...</div>
+        <div id="json-content"></div>
+        <div id="no-data-content">
+            <div class="example">
+                <h3>Not Found any Schema</h3>
+            </div>
+            <div class="intro">
+                <h2>Why Schema Markup?</h2>
+                <p>
+                    Schema markup <b>helps search engines understand your site better</b>. Without it,<b> <u>Google</u>
+                        might
+                        miss
+                        important details </b>about your content. This can lead to <b>lower search rankings</b> and
+                    <b>fewer visitors</b>..
+                </p>
+            </div>
+            <div class="example">
+                <h3>Try It Out</h3>
+                <p>Visit <a href="https://www.seomarkup.site/?utm_source=extention&utm_medium=learn"
+                        target="_blank">www.seomarkup.site</a> and click the SEO Markup Viewer
+                    icon to see the plugin in action.</p>
+            </div>
+        </div>
+
+        <!-- <a href="#" target="_blank" id="custom-audit-link">Submit Your Site for a Custom SEO Markup Audit 🚀</a> -->
+
+    </main>
+
+    <footer>
+        <div class="footer-links">
+            <a href="https://www.seomarkup.site/#feedback-open?utm_source=extention&utm_medium=feedback" target="_blank">Help us improve ❤️</a>
+            <a id="rate-us-link" href="https://chromewebstore.google.com/detail/seomarkup-structured-data/gaclifbkjcockpefkcjpgggmeolckind/reviews?utm_source=extension&utm_medium=footer_rate" target="_blank" title="Rate us on the Chrome Web Store">
+                <span class="rate-star" aria-hidden="true"></span>Rate us
+            </a>
+            <a href="https://www.seomarkup.site/?utm_source=extention&utm_medium=footer" target="_blank">Learn SEO Schema <img
+                    src="icons/arrow-up-right.svg" alt="" width="10" /></a>
+        </div>
+    </footer>
+
+    <script type="module" src="popup.js"></script>
+</body>
+
+</html>

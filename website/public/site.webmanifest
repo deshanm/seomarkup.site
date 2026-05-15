@@ -1,0 +1,21 @@
+{
+    "name": "SEOMarkup — JSON-LD Structured Data Inspector",
+    "short_name": "SEOMarkup",
+    "description": "Free Chrome extension that instantly reveals all JSON-LD structured data on any webpage.",
+    "icons": [
+        {
+            "src": "/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#facc15",
+    "background_color": "#ffffff",
+    "display": "standalone",
+    "start_url": "/"
+}

@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>See What Google Reads on Any Website - Free Chrome Extension | SEOMarkup</title>
+
+
+    <!-- Meta Description -->
+    <meta name="description"
+        content="Discover the hidden structured data on any website with SEOMarkup. Free Chrome extension that reveals what Google can actually read from web pages instantly.">
+
+    <!-- Keywords -->
+    <meta name="keywords"
+        content="Google SEO, website rankings, Chrome extension, SEO analyzer, search engine optimization, website visibility, Google search results, free SEO tools, rich snippets, search rankings">
+    <link rel="canonical" href="https://www.seomarkup.site/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.seomarkup.site/">
+    <meta property="og:title" content="See What Google Reads on Any Website - Free Chrome Extension | SEOMarkup">
+    <meta property="og:description"
+        content="Discover the hidden structured data on any website with SEOMarkup. Free Chrome extension that reveals what Google can actually read from web pages instantly.">
+    <meta property="og:image" content="https://www.seomarkup.site/og-image.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.seomarkup.site/">
+    <meta property="twitter:title" content="See What Google Reads on Any Website - Free Chrome Extension | SEOMarkup">
+    <meta property="twitter:description"
+        content="Discover the hidden structured data on any website with SEOMarkup. Free Chrome extension that reveals what Google can actually read from web pages instantly.">
+    <meta property="twitter:image" content="https://www.seomarkup.site/twitter-image.png">
+
+
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-006FL60JQY"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-006FL60JQY');
+    </script>
+
+
+
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "SEOMarkup.site",
+          "url": "https://www.seomarkup.site",
+          "description": "SEOMarkup.site helps website owners discover the structured data on any website with a free Chrome extension that reveals what Google can read from web pages.",
+          "creator": {
+            "@type": "Organization",
+            "name": "SEOMarkup.site"
+          },
+          "applicationCategory": "BrowserApplication",
+          "operatingSystem": "Chrome",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          }
+        }
+        </script>
+
+    <!-- FAQ Schema -->
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What does SEOMarkup show?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "All JSON-LD structured data on any website - business info, products, articles, reviews, events, and more. It displays the data in organized, searchable format."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Do I need technical skills?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No! Just click the extension icon and see all structured data instantly. Everything is presented in an easy-to-read format with search functionality."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can I check competitor websites?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes! Visit any website and click the extension to see what structured data they're using. Perfect for competitor analysis and research."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Is my data private?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "100% private. All data stays in your browser - no API calls, no analytics, no external services. We never see what you analyze or where you browse."
+              }
+            }
+          ]
+        }
+        </script>
+
+    <!-- SoftwareApplication Schema -->
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          "name": "SEOMarkup - Structured Data Inspector",
+          "applicationCategory": "BrowserApplication",
+          "operatingSystem": "Chrome",
+          "url": "https://www.seomarkup.site",
+          "downloadUrl": "https://chromewebstore.google.com/detail/structured-data-schema-in/gaclifbkjcockpefkcjpgggmeolckind",
+          "description": "Free Chrome extension that reveals and displays structured data on any website in an easy-to-read format",
+          "softwareVersion": "1.0",
+          "datePublished": "2024-01-01",
+          "author": {
+            "@type": "Person",
+            "name": "Deshan"
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "featureList": [
+            "Instant structured data discovery and display",
+            "Export and copy data functionality", 
+            "Built-in search capabilities",
+            "Direct links to validation tools",
+            "Works on any website for analysis",
+            "Complete privacy and security"
+          ],
+          "screenshot": "https://www.seomarkup.site/screenshot.png"
+        }
+        </script>
+    <style>
+        .container {
+            max-width: 1280px;
+        }
+        .video {
+          width: 100%;
+          max-width: 800px; /* Max width you want */
+          height: auto;
+          aspect-ratio: 16 / 9; /* Maintains 16:9 aspect ratio */
+        }
+        
+        /* Custom animations and improvements */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        /* Smooth scrolling for anchor links */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Enhanced hover effects */
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            transition: transform 0.3s ease;
+        }
+        
+        /* Better focus states for accessibility */
+        .btn:focus {
+            ring: 2px;
+            ring-blue-300;
+            ring-opacity: 50;
+        }
+    </style>
+  
+</head>
+
+<body class="bg-yellow-50 font-['Poppins',sans-serif] leading-normal tracking-normal text-gray-800">
+    <!-- Header -->
+    <header class="bg-yellow-300 p-4 pb-0">
+        <div class="container mx-auto flex items-center justify-between">
+            <a href="/" class="flex items-center space-x-2">
+                <img src="./logo.png" alt="SEOmarkup.site logo" class="w-16" />
+                <span class="text-xl font-bold">SEOMarkup.site</span>
+            </a>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#how-it-works" class="text-gray-800 hover:text-gray-900 font-semibold">How It Works</a>
+                <a href="#features" class="text-gray-800 hover:text-gray-900 font-semibold">Features</a>
+                <a href="#contact" class="text-gray-800 hover:text-gray-900 font-semibold">Contact</a>
+            </nav>
+            <div class="md:hidden">
+                <button id="menu-btn" class="text-gray-800 hover:text-gray-900 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-yellow-300">
+            <a href="#how-it-works" class="block py-2 px-4 text-sm text-gray-800 hover:bg-yellow-400">How It Works</a>
+            <a href="#features" class="block py-2 px-4 text-sm text-gray-800 hover:bg-yellow-400">Features</a>
+            <a href="#contact" class="block py-2 px-4 text-sm text-gray-800 hover:bg-yellow-400">Contact</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-br from-yellow-200 to-yellow-300 py-16 md:py-24">
+        <div class="container mx-auto px-4">
+            <div class="hero-content flex flex-col md:flex-row items-center justify-between">
+                <div class="text-left md:w-1/2 mb-8 md:mb-0">
+                    <div class="mb-4">
+                        <span class="bg-green-100 text-green-800 text-sm font-semibold px-3 py-1 rounded-full">
+                            ✨ 100% Free Forever
+                        </span>
+                    </div>
+                    <h1 class="text-4xl md:text-6xl font-bold text-black leading-tight mb-6">
+                        View <span class="text-gray-800">Structured Data</span> on Any Website
+                    </h1>
+                    <p class="text-xl md:text-2xl text-gray-800 mb-4 leading-relaxed">
+                        This Chrome extension finds and displays all JSON-LD structured data on any web page in an organized, readable format.
+                    </p>
+                    <p class="text-lg text-gray-700 mb-4">
+                        Click the extension icon → See all structured data → Search, copy, or download it.
+                    </p>
+                    <div class="bg-white p-4 rounded-lg border-l-4 border-yellow-400 mb-8 text-left">
+                        <p class="text-sm text-gray-800 font-semibold mb-2">What you'll see:</p>
+                        <ul class="text-sm text-gray-700 space-y-1">
+                            <li>• Business information (LocalBusiness, Organization)</li>
+                            <li>• Product data (Product, Offer, Review)</li>
+                            <li>• Article markup (Article, BlogPosting)</li>
+                            <li>• Event details (Event, EducationEvent)</li>
+                            <li>• Recipe data (Recipe, HowTo)</li>
+                            <li>• Any other schema.org structured data</li>
+                        </ul>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="https://chromewebstore.google.com/detail/structured-data-schema-in/gaclifbkjcockpefkcjpgggmeolckind"
+                            target="_blank"
+                            class="bg-black hover:bg-gray-800 text-white font-bold py-4 px-8 rounded-xl flex items-center justify-center transition duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30" height="30" fill="white"
+                                class="mr-3">
+                                <path
+                                    d="M15 3c-3.926 0-7.402 1.895-9.59 4.81l4.342 4.342C10.768 10.283 12.724 9 15 9c1.342 0 2.568.455 3.568 1.2h7.233l-5.432 2.171c.391.797.631 1.682.631 2.629 0 1.972-.965 3.708-2.432 4.8h.032l-4.76 7.141q.571.057 1.16.059c6.628 0 12-5.372 12-12S21.628 3 15 3M5.406 7.813A11.93 11.93 0 0 0 3 15c0 6.229 4.747 11.346 10.82 11.94l2.008-6.024c-.274.038-.545.084-.828.084a6 6 0 0 1-6-6zM15 11a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4" />
+                            </svg>
+                            Add to Chrome - It's Free!
+                        </a>
+                        <a href="#how-it-works"
+                            class="bg-white hover:bg-gray-50 text-black font-semibold py-4 px-8 rounded-xl border-2 border-black transition duration-300 text-center">
+                            Watch How It Works
+                        </a>
+                    </div>
+                    <p class="text-sm text-gray-600 mt-4">
+                        ⚡ Installs in 30 seconds • 🔒 Completely private • 📊 Analyze any website
+                    </p>
+                </div>
+                <div class="md:w-5/12">
+                    <img src="screenshot.png"
+                        alt="Screenshot showing SEOMarkup chrome extension revealing hidden Google SEO data on a website"
+                        class="bg-white w-full border-4 border-white rounded-2xl shadow-2xl transform hover:scale-105 transition duration-300">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem/Solution Section -->
+    <section class="bg-white py-16 md:py-20">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-black mb-8">
+                    Ever Wonder What Google Actually Reads on Websites?
+                </h2>
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="bg-white p-8 rounded-2xl border-l-4 border-yellow-400 shadow-lg">
+                        <div class="text-4xl mb-4">🤔</div>
+                        <h3 class="text-xl font-bold text-black mb-4">The Mystery</h3>
+                        <ul class="text-left text-gray-800 space-y-3">
+                            <li>• Websites have hidden structured data that Google reads</li>
+                            <li>• You can't see this data by just looking at a page</li>
+                            <li>• Most people have no idea what data their site provides</li>
+                            <li>• Competitors might have data you don't know about</li>
+                        </ul>
+                    </div>
+                    <div class="bg-yellow-100 p-8 rounded-2xl border-l-4 border-black shadow-lg">
+                        <div class="text-4xl mb-4">🔍</div>
+                        <h3 class="text-xl font-bold text-black mb-4">SEOMarkup Shows You</h3>
+                        <ul class="text-left text-gray-800 space-y-3">
+                            <li>• All structured data on any website instantly</li>
+                            <li>• Compare what your site shows vs competitors</li>
+                            <li>• Search through data to find specific information</li>
+                            <li>• Export data for analysis or sharing</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="bg-gray-50 py-16 md:py-24">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
+                    See It In Action
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-12">
+                    Watch how easy it is to discover structured data on any website in just a few clicks
+                </p>
+                <div class="flex flex-col items-center justify-center mb-16">
+                    <iframe class="video shadow-2xl rounded-2xl" src="https://www.youtube.com/embed/4nP8GkuxYYo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <h3 class="text-2xl md:text-3xl font-bold text-center mb-12 text-gray-800">Getting Started Takes Just 3 Steps</h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-2">
+                    <div class="text-center mb-6">
+                        <div class="bg-blue-100 text-blue-600 w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">1</div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-800">Click "Add to Chrome"</h3>
+                        <p class="text-gray-600 mb-6">Install our free extension in just 10 seconds. No signup required, no credit card needed.</p>
+                    </div>
+                    <img src="step-1.png" alt="Installing SEOMarkup chrome extension from Chrome Web Store"
+                        class="w-full h-48 object-cover rounded-xl border-2 border-gray-100 shadow-md">
+                </div>
+                
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-2">
+                    <div class="text-center mb-6">
+                        <div class="bg-green-100 text-green-600 w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">2</div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-800">Visit Any Website</h3>
+                        <p class="text-gray-600 mb-6">Go to your website, a competitor's site, or any page you want to analyze for structured data.</p>
+                    </div>
+                                            <img src="step-2.png" alt="Browsing to any website to analyze structured data"
+                        class="w-full h-48 object-cover rounded-xl border-2 border-gray-100 shadow-md">
+                </div>
+                
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-2">
+                    <div class="text-center mb-6">
+                        <div class="bg-purple-100 text-purple-600 w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">3</div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-800">Click & Discover</h3>
+                        <p class="text-gray-600 mb-6">Click our icon and instantly see all the structured data on that page.</p>
+                    </div>
+                                            <img src="step-3.png" alt="SEOMarkup extension showing structured data"
+                        class="w-full h-48 object-cover rounded-xl border-2 border-gray-100 shadow-md">
+                </div>
+            </div>
+            
+            <div class="text-center mt-16">
+                <a href="https://chromewebstore.google.com/detail/structured-data-schema-in/gaclifbkjcockpefkcjpgggmeolckind"
+                    target="_blank"
+                    class="bg-black hover:bg-gray-800 text-white font-bold py-4 px-12 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition duration-300 inline-flex items-center text-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="24" height="24" fill="white" class="mr-3">
+                        <path d="M15 3c-3.926 0-7.402 1.895-9.59 4.81l4.342 4.342C10.768 10.283 12.724 9 15 9c1.342 0 2.568.455 3.568 1.2h7.233l-5.432 2.171c.391.797.631 1.682.631 2.629 0 1.972-.965 3.708-2.432 4.8h.032l-4.76 7.141q.571.057 1.16.059c6.628 0 12-5.372 12-12S21.628 3 15 3M5.406 7.813A11.93 11.93 0 0 0 3 15c0 6.229 4.747 11.346 10.82 11.94l2.008-6.024c-.274.038-.545.084-.828.084a6 6 0 0 1-6-6zM15 11a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4" />
+                    </svg>
+                    Start Exploring Structured Data
+                </a>
+                <p class="text-gray-600 mt-4">Free forever • No hidden fees • Works on any website</p>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Benefits Section -->
+    <section id="features" class="bg-white py-16 md:py-24">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-black mb-6">What Structured Data You Can Find on Any Website</h2>
+                <p class="text-xl text-gray-800 max-w-4xl mx-auto">
+                    Every website has hidden structured data that tells search engines what the content is about. 
+                    SEOMarkup reveals all of it in an organized, searchable format.
+                </p>
+            </div>
+
+            <!-- Main Data Types Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                <!-- Business Information -->
+                <div class="group bg-gradient-to-br from-yellow-50 to-yellow-100 p-8 rounded-2xl shadow-lg border-l-4 border-yellow-400 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="flex items-center mb-4">
+                        <div class="text-4xl mr-4">🏢</div>
+                        <div>
+                            <h3 class="text-xl font-bold text-black">Business Information</h3>
+                            <p class="text-sm text-gray-600 font-semibold">LocalBusiness, Organization</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-800 mb-4">Company names, addresses, phone numbers, operating hours, and business details that help Google understand your local presence.</p>
+                    <div class="bg-white p-3 rounded-lg border border-yellow-200">
+                        <p class="text-xs text-gray-600 font-semibold mb-1">EXAMPLE DATA:</p>
+                        <p class="text-sm text-gray-700">Business name, address, phone, hours, reviews, ratings</p>
+                    </div>
+                </div>
+                
+                <!-- Reviews & Ratings -->
+                <div class="group bg-gradient-to-br from-white to-gray-50 p-8 rounded-2xl shadow-lg border-l-4 border-black hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="flex items-center mb-4">
+                        <div class="text-4xl mr-4">⭐</div>
+                        <div>
+                            <h3 class="text-xl font-bold text-black">Reviews & Ratings</h3>
+                            <p class="text-sm text-gray-600 font-semibold">Review, AggregateRating</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-800 mb-4">Customer reviews, star ratings, and aggregated rating data that can appear as rich snippets in search results.</p>
+                    <div class="bg-white p-3 rounded-lg border border-gray-200">
+                        <p class="text-xs text-gray-600 font-semibold mb-1">EXAMPLE DATA:</p>
+                        <p class="text-sm text-gray-700">Star ratings, review counts, individual reviews</p>
+                    </div>
+                </div>
+                
+                <!-- Articles & Content -->
+                <div class="group bg-gradient-to-br from-yellow-100 to-yellow-200 p-8 rounded-2xl shadow-lg border-l-4 border-yellow-400 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="flex items-center mb-4">
+                        <div class="text-4xl mr-4">📰</div>
+                        <div>
+                            <h3 class="text-xl font-bold text-black">Articles & Content</h3>
+                            <p class="text-sm text-gray-600 font-semibold">Article, BlogPosting, NewsArticle</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-800 mb-4">Blog posts, news articles, and content that's structured to help search engines understand the topic and author information.</p>
+                    <div class="bg-white p-3 rounded-lg border border-yellow-200">
+                        <p class="text-xs text-gray-600 font-semibold mb-1">EXAMPLE DATA:</p>
+                        <p class="text-sm text-gray-700">Author, publish date, headline, article body</p>
+                    </div>
+                </div>
+                
+                <!-- Products & Prices -->
+                <div class="group bg-gradient-to-br from-white to-gray-50 p-8 rounded-2xl shadow-lg border-l-4 border-black hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="flex items-center mb-4">
+                        <div class="text-4xl mr-4">🛍️</div>
+                        <div>
+                            <h3 class="text-xl font-bold text-black">Products & Prices</h3>
+                            <p class="text-sm text-gray-600 font-semibold">Product, Offer, Price</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-800 mb-4">Product details, pricing information, availability, and offers that can show up as rich product listings in search.</p>
+                    <div class="bg-white p-3 rounded-lg border border-gray-200">
+                        <p class="text-xs text-gray-600 font-semibold mb-1">EXAMPLE DATA:</p>
+                        <p class="text-sm text-gray-700">Product name, price, availability, brand, images</p>
+                    </div>
+                </div>
+                
+                <!-- Events & Dates -->
+                <div class="group bg-gradient-to-br from-yellow-50 to-yellow-100 p-8 rounded-2xl shadow-lg border-l-4 border-yellow-400 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="flex items-center mb-4">
+                        <div class="text-4xl mr-4">📅</div>
+                        <div>
+                            <h3 class="text-xl font-bold text-black">Events & Dates</h3>
+                            <p class="text-sm text-gray-600 font-semibold">Event, EducationEvent</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-800 mb-4">Event information, dates, locations, and educational events that can appear as rich event listings in search results.</p>
+                    <div class="bg-white p-3 rounded-lg border border-yellow-200">
+                        <p class="text-xs text-gray-600 font-semibold mb-1">EXAMPLE DATA:</p>
+                        <p class="text-sm text-gray-700">Event name, date, location, ticket prices</p>
+                    </div>
+                </div>
+                
+                <!-- Recipes & Instructions -->
+                <div class="group bg-gradient-to-br from-yellow-100 to-yellow-200 p-8 rounded-2xl shadow-lg border-l-4 border-black hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="flex items-center mb-4">
+                        <div class="text-4xl mr-4">🍽️</div>
+                        <div>
+                            <h3 class="text-xl font-bold text-black">Recipes & Instructions</h3>
+                            <p class="text-sm text-gray-600 font-semibold">Recipe, HowTo</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-800 mb-4">Recipe details, cooking instructions, ingredients, and step-by-step guides that can show as rich recipe cards in search.</p>
+                    <div class="bg-white p-3 rounded-lg border border-yellow-200">
+                        <p class="text-xs text-gray-600 font-semibold mb-1">EXAMPLE DATA:</p>
+                        <p class="text-sm text-gray-700">Ingredients, cooking time, instructions, nutrition</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Data Types -->
+            <div class="bg-gradient-to-r from-yellow-100 to-yellow-200 p-8 rounded-2xl mb-16">
+                <h3 class="text-2xl font-bold text-black mb-6 text-center">And Many More Data Types...</h3>
+                <div class="grid md:grid-cols-4 gap-6">
+                    <div class="text-center">
+                        <div class="text-2xl mb-2">🎬</div>
+                        <p class="text-sm font-semibold text-gray-800">Videos & Media</p>
+                        <p class="text-xs text-gray-600">VideoObject, CreativeWork</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl mb-2">📚</div>
+                        <p class="text-sm font-semibold text-gray-800">Books & Publications</p>
+                        <p class="text-xs text-gray-600">Book, Publication</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl mb-2">🏥</div>
+                        <p class="text-sm font-semibold text-gray-800">Health & Medical</p>
+                        <p class="text-xs text-gray-600">MedicalEntity, Drug</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl mb-2">🎓</div>
+                        <p class="text-sm font-semibold text-gray-800">Education</p>
+                        <p class="text-xs text-gray-600">Course, EducationalOrganization</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Who This Helps -->
+            <div class="bg-black p-12 rounded-2xl text-center">
+                <h3 class="text-2xl font-bold text-white mb-8">Who Uses SEOMarkup to Explore Website Data?</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="group hover:transform hover:scale-105 transition-all duration-300">
+                        <div class="text-4xl mb-4">👨‍💼</div>
+                        <h4 class="font-bold text-white mb-3 text-lg">Business Owners</h4>
+                        <p class="text-sm text-gray-300 mb-3">See what structured data your website provides to search engines</p>
+                        <div class="bg-yellow-400 text-black text-xs px-3 py-1 rounded-full font-semibold">Most Popular</div>
+                    </div>
+                    <div class="group hover:transform hover:scale-105 transition-all duration-300">
+                        <div class="text-4xl mb-4">📝</div>
+                        <h4 class="font-bold text-white mb-3 text-lg">Content Creators</h4>
+                        <p class="text-sm text-gray-300 mb-3">Discover how your articles are marked up for search engines</p>
+                        <div class="bg-gray-600 text-white text-xs px-3 py-1 rounded-full font-semibold">Bloggers</div>
+                    </div>
+                    <div class="group hover:transform hover:scale-105 transition-all duration-300">
+                        <div class="text-4xl mb-4">🛒</div>
+                        <h4 class="font-bold text-white mb-3 text-lg">Online Sellers</h4>
+                        <p class="text-sm text-gray-300 mb-3">Analyze product markup on your own and competitor sites</p>
+                        <div class="bg-gray-600 text-white text-xs px-3 py-1 rounded-full font-semibold">E-commerce</div>
+                    </div>
+                    <div class="group hover:transform hover:scale-105 transition-all duration-300">
+                        <div class="text-4xl mb-4">🎯</div>
+                        <h4 class="font-bold text-white mb-3 text-lg">SEO Professionals</h4>
+                        <p class="text-sm text-gray-300 mb-3">Quickly audit structured data across multiple websites</p>
+                        <div class="bg-gray-600 text-white text-xs px-3 py-1 rounded-full font-semibold">Agencies</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="bg-yellow-50 py-16 md:py-24">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-black mb-6">What This Tool Actually Does</h2>
+                <p class="text-xl text-gray-800 max-w-3xl mx-auto">
+                    Based on the actual functionality from the extension code - here's exactly what you get.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-yellow-400">
+                    <div class="text-3xl mb-4">📋</div>
+                    <h3 class="text-lg font-bold text-black mb-3">Display JSON-LD Data</h3>
+                    <p class="text-gray-800">Shows all JSON-LD structured data from any webpage in organized accordion format.</p>
+                </div>
+                
+                <div class="bg-yellow-100 p-6 rounded-xl shadow-lg border-l-4 border-black">
+                    <div class="text-3xl mb-4">🔍</div>
+                    <h3 class="text-lg font-bold text-black mb-3">Search Within Data</h3>
+                    <p class="text-gray-800">Search box to find specific text within the structured data. Shows "X of Y" results.</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-yellow-400">
+                    <div class="text-3xl mb-4">📋</div>
+                    <h3 class="text-lg font-bold text-black mb-3">Copy JSON Data</h3>
+                    <p class="text-gray-800">Copy buttons for raw JSON and HTML script tags with the structured data.</p>
+                </div>
+                
+                <div class="bg-yellow-100 p-6 rounded-xl shadow-lg border-l-4 border-black">
+                    <div class="text-3xl mb-4">💾</div>
+                    <h3 class="text-lg font-bold text-black mb-3">Download JSON Files</h3>
+                    <p class="text-gray-800">Download each structured data object as a separate JSON file to your computer.</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-yellow-400">
+                    <div class="text-3xl mb-4">🔗</div>
+                    <h3 class="text-lg font-bold text-black mb-3">Validation Links</h3>
+                    <p class="text-gray-800">Direct links to Google Rich Results Test and Schema.org validator for testing.</p>
+                </div>
+                
+                <div class="bg-yellow-100 p-6 rounded-xl shadow-lg border-l-4 border-black">
+                    <div class="text-3xl mb-4">ℹ️</div>
+                    <h3 class="text-lg font-bold text-black mb-3">Schema.org Info</h3>
+                    <p class="text-gray-800">Info icons that link to schema.org documentation for each data type found.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="bg-white py-16 md:py-24">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-black mb-6">
+                    Frequently Asked Questions
+                </h2>
+                <p class="text-xl text-gray-800 max-w-3xl mx-auto">
+                    Everything you need to know about SEOMarkup and how it reveals the structured data on any website.
+                </p>
+            </div>
+
+            <div class="max-w-4xl mx-auto space-y-6">
+                <div class="bg-yellow-50 p-6 rounded-2xl border-l-4 border-yellow-400">
+                    <h3 class="text-lg font-bold text-black mb-3">What does SEOMarkup show?</h3>
+                    <p class="text-gray-800">All JSON-LD structured data on any website - business info, products, articles, reviews, events, and more. It displays the data in organized, searchable format.</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-2xl border-l-4 border-black">
+                    <h3 class="text-lg font-bold text-black mb-3">Do I need technical skills?</h3>
+                    <p class="text-gray-800">No! Just click the extension icon and see all structured data instantly. Everything is presented in an easy-to-read format with search functionality.</p>
+                </div>
+                
+                <div class="bg-yellow-100 p-6 rounded-2xl border-l-4 border-yellow-400">
+                    <h3 class="text-lg font-bold text-black mb-3">Can I check competitor websites?</h3>
+                    <p class="text-gray-800">Yes! Visit any website and click the extension to see what structured data they're using. Perfect for competitor analysis and research.</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-2xl border-l-4 border-black">
+                    <h3 class="text-lg font-bold text-black mb-3">Is my data private?</h3>
+                    <p class="text-gray-800">100% private. All data stays in your browser - no API calls, no analytics, no external services. We never see what you analyze or where you browse.</p>
+                </div>
+            </div>
+
+            <!-- Privacy Notice -->
+            <div class="mt-8 bg-white p-6 rounded-2xl shadow-lg border-l-4 border-yellow-400">
+                <div class="flex items-start">
+                    <div class="text-3xl mr-4">🔒</div>
+                    <div>
+                        <h3 class="text-lg font-bold text-black mb-3">Complete Privacy Guarantee</h3>
+                        <p class="text-gray-800 mb-4">
+                            SEOMarkup works entirely within your browser. We don't:
+                        </p>
+                        <ul class="text-gray-700 space-y-2 text-sm">
+                            <li>• Make any API calls to external services</li>
+                            <li>• Collect analytics or usage data</li>
+                            <li>• Store your browsing history or analyzed data</li>
+                            <li>• Track which websites you visit</li>
+                        </ul>
+                        <p class="text-gray-800 mt-4 font-semibold">
+                            Your usage is completely private - only you see what you analyze.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="bg-yellow-100 py-16 md:py-24">
+        <div class="container mx-auto px-4 text-center">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold text-black mb-6">Simple, Transparent Pricing</h2>
+                <div class="bg-white p-12 rounded-2xl shadow-2xl mb-8 border-4 border-yellow-400">
+                    <div class="text-6xl text-black font-bold mb-4">FREE</div>
+                    <h3 class="text-2xl font-bold text-black mb-4">Forever & Always</h3>
+                    <p class="text-xl text-gray-800 mb-8 max-w-2xl mx-auto">
+                        Get full access to all SEOMarkup features at no cost. We believe structured data analysis tools should be available to everyone.
+                    </p>
+                    
+                    <div class="grid md:grid-cols-2 gap-6 mb-8 text-left">
+                        <ul class="space-y-3">
+                            <li class="flex items-center text-gray-800">
+                                <span class="text-yellow-500 mr-3 text-xl">✓</span>
+                                Unlimited website analysis
+                            </li>
+                            <li class="flex items-center text-gray-800">
+                                <span class="text-yellow-500 mr-3 text-xl">✓</span>
+                                Export and copy data
+                            </li>
+                            <li class="flex items-center text-gray-800">
+                                <span class="text-yellow-500 mr-3 text-xl">✓</span>
+                                Built-in search functionality
+                            </li>
+                        </ul>
+                        <ul class="space-y-3">
+                            <li class="flex items-center text-gray-800">
+                                <span class="text-yellow-500 mr-3 text-xl">✓</span>
+                                Direct validation tool links
+                            </li>
+                            <li class="flex items-center text-gray-800">
+                                <span class="text-yellow-500 mr-3 text-xl">✓</span>
+                                Competitor data analysis
+                            </li>
+                            <li class="flex items-center text-gray-800">
+                                <span class="text-yellow-500 mr-3 text-xl">✓</span>
+                                Complete privacy & security
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <a href="https://chromewebstore.google.com/detail/structured-data-schema-in/gaclifbkjcockpefkcjpgggmeolckind"
+                        target="_blank"
+                        class="bg-black hover:bg-gray-800 text-white font-bold py-4 px-12 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition duration-300 inline-flex items-center text-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="24" height="24" fill="white" class="mr-3">
+                            <path d="M15 3c-3.926 0-7.402 1.895-9.59 4.81l4.342 4.342C10.768 10.283 12.724 9 15 9c1.342 0 2.568.455 3.568 1.2h7.233l-5.432 2.171c.391.797.631 1.682.631 2.629 0 1.972-.965 3.708-2.432 4.8h.032l-4.76 7.141q.571.057 1.16.059c6.628 0 12-5.372 12-12S21.628 3 15 3M5.406 7.813A11.93 11.93 0 0 0 3 15c0 6.229 4.747 11.346 10.82 11.94l2.008-6.024c-.274.038-.545.084-.828.084a6 6 0 0 1-6-6zM15 11a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4" />
+                        </svg>
+                        Get SEOMarkup Free
+                    </a>
+                    <p class="text-gray-600 mt-4 text-sm">No credit card • No signup • No hidden fees</p>
+                </div>
+                
+                <div class="text-center">
+                    <p class="text-lg text-gray-800">
+                        <strong>Why free?</strong> We believe everyone should be able to explore and understand how websites communicate with search engines. 
+                        SEOMarkup is our contribution to making structured data more accessible to everyone.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="bg-black py-16 md:py-24 text-white text-center">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl md:text-5xl font-bold mb-6">
+                    Ready to Explore Structured Data?
+                </h2>
+                <p class="text-xl md:text-2xl mb-8 text-gray-300">
+                    Join users who are discovering the hidden structured data on websites
+                </p>
+                <a href="https://chromewebstore.google.com/detail/structured-data-schema-in/gaclifbkjcockpefkcjpgggmeolckind"
+                    target="_blank"
+                    class="bg-yellow-400 text-black hover:bg-yellow-300 font-bold py-6 px-12 rounded-xl shadow-2xl hover:shadow-3xl transform hover:-translate-y-2 transition duration-300 inline-flex items-center text-xl mb-8">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30" height="30" fill="currentColor" class="mr-4">
+                        <path d="M15 3c-3.926 0-7.402 1.895-9.59 4.81l4.342 4.342C10.768 10.283 12.724 9 15 9c1.342 0 2.568.455 3.568 1.2h7.233l-5.432 2.171c.391.797.631 1.682.631 2.629 0 1.972-.965 3.708-2.432 4.8h.032l-4.76 7.141q.571.057 1.16.059c6.628 0 12-5.372 12-12S21.628 3 15 3M5.406 7.813A11.93 11.93 0 0 0 3 15c0 6.229 4.747 11.346 10.82 11.94l2.008-6.024c-.274.038-.545.084-.828.084a6 6 0 0 1-6-6zM15 11a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4" />
+                    </svg>
+                    Start Exploring Now
+                </a>
+                <p class="text-gray-400 text-lg">
+                    ⚡ Installs in 30 seconds • 🆓 Completely free • 🔒 100% private
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="bg-yellow-400 pt-16 md:pt-24">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800">Have Questions or Feedback?</h2>
+
+            <!-- Contact Methods -->
+            <div class="max-w-2xl mx-auto bg-white p-8 rounded-2xl shadow-2xl mb-8">
+                <div class="text-4xl mb-4">💬</div>
+                <p class="text-xl font-semibold mb-4 text-gray-800">We'd Love to Hear From You!</p>
+                <p class="text-gray-700 mb-6 text-lg">
+                    Whether you have questions about structured data, ideas for new features, or just want to share your experience, 
+                    I'm here to help and would love to connect.
+                </p>
+                
+                <p class="text-gray-600 mt-4 text-sm">
+                    Response time: Usually within 24 hours
+                </p>
+            </div>
+        </div>
+        <img src="./logo.png" alt="SEOMarkup logo" class="w-32 mx-auto mt-12" />
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+
+
+        <a class="fixed bottom-8 right-8 bg-yellow-400 text-black px-4 py-2 rounded-full shadow-lg hover:bg-yellow-600 focus:outline-none  border-2 border-white"
+            href="#tally-open=wvBZED&tally-emoji-text=👋&tally-emoji-animation=wave&tally-auto-close=0">
+            Feedback
+        </a>
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2024 SEOMarkup.site. All rights reserved.</p>
+        </div>
+
+    </footer>
+
+
+    <script async src="https://tally.so/widgets/embed.js"></script>
+    <script>
+        function checkAndOpenTallyPopup() {
+            if (window.location.hash?.includes('#feedback-open')) {
+                if (typeof Tally !== 'undefined') {
+                    Tally.openPopup('wvBZED');
+                } else {
+                    setTimeout(checkAndOpenTallyPopup, 400); // Check again after 400ms
+                }
+            }
+        }
+
+        window.addEventListener('load', checkAndOpenTallyPopup);
+
+        document.getElementById('menu-btn').addEventListener('click', function() {
+            var mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+
+</body>
+
+</html>

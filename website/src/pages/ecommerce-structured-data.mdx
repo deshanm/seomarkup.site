@@ -1,0 +1,186 @@
+---
+title: "Structured Data for E-commerce: What You Need and Why"
+description: "How product schema markup helps e-commerce sites win rich results in Google Search — with real, validated JSON-LD examples."
+publishedAt: "2026-05-15"
+updatedAt: "2026-05-15"
+author: "Deshan M"
+layout: '../layouts/ArticleLayout.astro'
+---
+
+If you run an online store and you're not using structured data, you are leaving money on the table. Not in a hand-wavy SEO sense — in a very literal sense: product listings with rich results get a higher click-through rate than plain blue links, and rich results require structured data.
+
+This guide covers what structured data you need, why it matters for e-commerce, and exactly how to write it correctly. Every field requirement below is sourced from [Google's Product structured data documentation](https://developers.google.com/search/docs/appearance/structured-data/product).
+
+---
+
+## Why e-commerce sites need structured data
+
+When someone searches for "red running shoes size 10", Google doesn't just want to show a blue link. It wants to show a result with a photo, a price, a star rating, and an availability badge — because that's what converts.
+
+Those rich results come from structured data. Specifically, they come from `Product`, `Offer`, and `AggregateRating` JSON-LD that you embed in your product pages.
+
+**What you can get (from Google's documented rich result types):**
+
+- **Product snippets** — price, availability, and rating stars in the regular search results
+- **Merchant listings** (formerly Shopping) — your product in Google's dedicated shopping experience
+- **Product Knowledge Panel** — for branded products, a rich sidebar with full product details
+
+None of these are guaranteed just because you add the markup. But you *cannot* get them without the markup.
+
+---
+
+## The core schema types for e-commerce
+
+### Product
+
+The root type for any product page. Required by Google for product rich results.
+
+**Required fields (per Google):**
+- `name` — the product's name
+- At least one of: `review`, `aggregateRating`, or `offers`
+
+**Recommended fields:**
+- `image` — one or more high-quality images
+- `description`
+- `sku`
+- `brand` (as a `Brand` object with `name`)
+- `gtin` / `gtin8` / `gtin12` / `gtin13` / `gtin14` — global trade identifiers improve rich result eligibility
+
+### Offer
+
+Nested inside `Product` via the `offers` property. This is where price, currency, and availability live.
+
+**Required fields for rich results:**
+- `price` (or `priceSpecification`)
+- `priceCurrency` — ISO 4217 code (e.g. `"USD"`, `"GBP"`)
+
+**Recommended fields:**
+- `availability` — use `https://schema.org/InStock`, `OutOfStock`, or `PreOrder`
+- `priceValidUntil` — a future date in ISO 8601 format; Google uses this to determine whether price is current
+- `url` — URL of the product page
+- `itemCondition` — `NewCondition`, `UsedCondition`, etc.
+- `shippingDetails` — increasingly used for merchant listings
+
+### AggregateRating
+
+Nested inside `Product` via `aggregateRating`. Powers the star ratings in search results.
+
+**Required fields:**
+- `ratingValue` — the average (e.g. `4.5`)
+- `reviewCount` or `ratingCount` — number of ratings
+
+**Important:** Google requires the rating to be visible to users on the page. You cannot have `AggregateRating` in your JSON-LD if there are no visible ratings on the page — that's a structured data policy violation.
+
+### BreadcrumbList
+
+Not product-specific, but essential for e-commerce category navigation. Shows the breadcrumb trail in search results.
+
+---
+
+## A real, validated example
+
+Here's a complete Product JSON-LD for a hypothetical running shoe. This example passes Google's Rich Results Test.
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "AeroStride Pro Running Shoe",
+  "image": [
+    "https://example.com/images/aerostride-red-1.jpg",
+    "https://example.com/images/aerostride-red-2.jpg"
+  ],
+  "description": "Lightweight running shoe with responsive cushioning for long-distance training.",
+  "sku": "AERO-RED-42",
+  "gtin13": "0012345678901",
+  "brand": {
+    "@type": "Brand",
+    "name": "AeroStride"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.6",
+    "reviewCount": "284"
+  },
+  "offers": {
+    "@type": "Offer",
+    "url": "https://example.com/products/aerostride-pro",
+    "priceCurrency": "USD",
+    "price": "129.99",
+    "priceValidUntil": "2026-12-31",
+    "availability": "https://schema.org/InStock",
+    "itemCondition": "https://schema.org/NewCondition"
+  }
+}
+```
+
+**How to add this to your page:**
+
+```html
+<script type="application/ld+json">
+{ ... paste the JSON above ... }
+</script>
+```
+
+Place this tag anywhere in `<head>` or `<body>`. Google recommends `<head>` but supports either.
+
+---
+
+## Common mistakes that cause rich results to fail
+
+**1. Price mismatch**
+The `price` in your JSON-LD must match the price visible on the page. Google compares the two. If they don't match, your rich result eligibility may be revoked.
+
+**2. Missing `priceValidUntil`**
+Without this, Google may treat your price as expired. Always set it to a future date.
+
+**3. Fake or inaccessible reviews**
+`AggregateRating` must reflect reviews visible to all users (not behind a login wall). Don't fabricate ratings.
+
+**4. `availability` using the wrong format**
+Use the full URL: `https://schema.org/InStock`. The shorthand `InStock` alone is technically valid in some parsers but the full URI is safer and preferred by Google.
+
+**5. Schema that doesn't match page content**
+Google's policies require structured data to accurately describe page content. A product page showing one item can't have `Product` markup for a different item.
+
+---
+
+## BreadcrumbList for category navigation
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://example.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Running", "item": "https://example.com/running/" },
+    { "@type": "ListItem", "position": 3, "name": "Shoes", "item": "https://example.com/running/shoes/" },
+    { "@type": "ListItem", "position": 4, "name": "AeroStride Pro", "item": "https://example.com/products/aerostride-pro" }
+  ]
+}
+```
+
+---
+
+## Frequently asked questions
+
+**Does adding Product schema guarantee rich results?**
+No. Google decides per-query whether to display rich results. Having valid schema makes you *eligible*; it doesn't guarantee display. Use [Google Rich Results Test](https://search.google.com/test/rich-results) to confirm your markup is eligible, then monitor [Google Search Console](https://search.google.com/search-console) to track appearances.
+
+**Do I need schema on every product page?**
+Ideally yes. Template your JSON-LD so it generates dynamically from your product database. Most e-commerce platforms (Shopify, WooCommerce, BigCommerce) have first-party or well-supported third-party apps that do this.
+
+**What about multi-variant products?**
+If a product has multiple variants (sizes, colours), implement schema on the individual variant page with the variant's specific price, SKU, and availability. The parent/collection page can have a more general description.
+
+**Can I use Microdata or RDFa instead of JSON-LD?**
+Yes, Google supports all three formats. JSON-LD is strongly preferred because it doesn't require you to modify your HTML template — it's a standalone `<script>` block.
+
+---
+
+## Tools to validate your product markup
+
+- **[Google Rich Results Test](https://search.google.com/test/rich-results)** — the authoritative check; paste your URL or code
+- **[Schema.org Validator](https://validator.schema.org/)** — validates against schema.org type definitions
+- **[SEOMarkup Chrome Extension](https://chromewebstore.google.com/detail/structured-data-schema-in/gaclifbkjcockpefkcjpgggmeolckind)** — inspect any product page to see what competitors are using
+- **[SEOMarkup Schema Generator](/schema-generator/)** — generate a valid Product JSON-LD without writing it by hand

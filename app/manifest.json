@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "SEOMarkup Structured Data Schema Inspector",
+  "short_name": "SEOmarkup Inspector",
+  "version": "1.0.8",
+  "description": "View and analyze JSON-LD structured data on any webpage. Built for SEO professionals, web developers, and data analysts.",
+  "permissions": ["activeTab", "scripting"],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "icons": {
+    "48": "icons/logo48.png",
+    "128": "icons/logo128.png"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'"
+  }
+}

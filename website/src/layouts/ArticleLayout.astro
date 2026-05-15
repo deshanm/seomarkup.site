@@ -1,0 +1,129 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import { SITE_URL } from '../lib/extension-meta';
+
+// Astro's MDX `layout:` frontmatter passes data in Astro.props.frontmatter
+// (not flattened into Astro.props directly like .md files do).
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const fm: Record<string, any> = (Astro.props as any).frontmatter ?? Astro.props;
+
+const title: string = fm.title ?? '';
+const description: string = fm.description ?? '';
+const author: string = fm.author ?? 'Deshan M';
+const ogImage: string | undefined = fm.ogImage;
+
+// Dates can arrive as JS Date objects (YAML auto-parse) or ISO strings
+function fmtDate(d: unknown): string {
+  if (!d) return '';
+  const date = d instanceof Date ? d : new Date(String(d));
+  if (isNaN(date.getTime())) return '';
+  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+
+const publishedAt: string = String(fm.publishedAt ?? '');
+const updatedAt: string | undefined = fm.updatedAt ? String(fm.updatedAt) : undefined;
+const publishedAtDisplay = fmtDate(fm.publishedAt);
+const updatedAtDisplay = fmtDate(fm.updatedAt);
+
+const url = Astro.url.href;
+const slug = Astro.url.pathname;
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": title,
+  "description": description,
+  "author": { "@type": "Person", "name": author },
+  "datePublished": publishedAt,
+  ...(updatedAt ? { "dateModified": updatedAt } : {}),
+  "url": url,
+  "publisher": {
+    "@type": "Organization",
+    "name": "SEOMarkup.site",
+    "url": SITE_URL,
+    "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.png` }
+  },
+  ...(ogImage ? { "image": ogImage } : {}),
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL },
+    { "@type": "ListItem", "position": 2, "name": title, "item": url },
+  ]
+};
+---
+
+<BaseLayout {title} {description} ogType="article" jsonLd={[articleSchema, breadcrumbSchema]}>
+  <Fragment slot="head">
+    {publishedAt && <meta property="article:published_time" content={publishedAt} />}
+    {updatedAt && <meta property="article:modified_time" content={updatedAt} />}
+    <meta property="article:author" content={author} />
+  </Fragment>
+
+  <!-- Article header -->
+  <section class="bg-white border-b border-gray-100 pt-12 pb-14 sm:pt-16 sm:pb-16">
+    <div class="max-w-6xl mx-auto px-5 sm:px-6 lg:px-8">
+      <!-- Breadcrumb -->
+      <nav class="mb-8" aria-label="Breadcrumb">
+        <ol class="flex items-center gap-1.5 text-[13px] text-gray-500">
+          <li><a href="/" class="hover:text-gray-800 no-underline transition-colors duration-100">Home</a></li>
+          <li class="text-gray-300" aria-hidden="true">/</li>
+          <li><a href="/resources/" class="hover:text-gray-800 no-underline transition-colors duration-100">Resources</a></li>
+          <li class="text-gray-300" aria-hidden="true">/</li>
+          <li class="text-gray-700 font-medium truncate max-w-[200px] sm:max-w-none" aria-current="page">{title}</li>
+        </ol>
+      </nav>
+
+      <p class="text-[11px] font-mono uppercase tracking-[0.15em] text-gray-500 mb-3">Article</p>
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-black tracking-tight text-balance leading-[1.1] mb-4 max-w-3xl">{title}</h1>
+      <p class="text-base sm:text-lg text-gray-600 leading-[1.6] max-w-2xl mb-6">{description}</p>
+      <div class="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-[13px] text-gray-500">
+        <span>By <span class="font-medium text-gray-700">{author}</span></span>
+        <span class="text-gray-300" aria-hidden="true">·</span>
+        <time datetime={publishedAt}>{publishedAtDisplay}</time>
+        {updatedAt && updatedAt !== publishedAt && (
+          <>
+            <span class="text-gray-300" aria-hidden="true">·</span>
+            <span>Updated <time datetime={updatedAt}>{updatedAtDisplay}</time></span>
+          </>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <!-- Article body -->
+  <section class="bg-gray-50 border-b border-gray-100 py-14 sm:py-20">
+    <div class="max-w-6xl mx-auto px-5 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <article class="prose prose-lg prose-gray max-w-none">
+          <slot />
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-white py-14 sm:py-20">
+    <div class="max-w-6xl mx-auto px-5 sm:px-6 lg:px-8">
+      <div class="bg-[#030712] rounded-2xl p-8 sm:p-10 flex flex-col sm:flex-row sm:items-center gap-6 sm:gap-10">
+        <div class="flex-1">
+          <p class="text-[11px] font-mono uppercase tracking-[0.15em] text-yellow-400 mb-2">Free Chrome Extension</p>
+          <h2 class="text-xl sm:text-2xl font-bold text-white tracking-tight mb-2">Inspect structured data on any website</h2>
+          <p class="text-gray-400 text-[14px] leading-relaxed">Every JSON-LD block on any page, parsed and readable. One click, no account.</p>
+        </div>
+        <a
+          href="https://chromewebstore.google.com/detail/structured-data-schema-in/gaclifbkjcockpefkcjpgggmeolckind"
+          target="_blank"
+          rel="noopener"
+          class="flex-shrink-0 inline-flex items-center gap-2.5 bg-yellow-400 hover:bg-yellow-300 text-black font-bold py-3.5 px-6 rounded-lg no-underline transition-[background-color,transform] duration-150 ease-out-strong active:scale-[0.97] whitespace-nowrap focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+        >
+          Add to Chrome — Free
+        </a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

@@ -1,0 +1,34 @@
+---
+import ToolLayout from '../layouts/ToolLayout.astro';
+import SchemaGenerator from '../components/tools/SchemaGenerator';
+---
+
+<ToolLayout
+  title="Free Schema Markup Generator — Product, FAQ, LocalBusiness, Article JSON-LD | SEOMarkup"
+  description="Generate valid JSON-LD schema markup for Product, FAQ, LocalBusiness, and Article types. Every field requirement sourced from Google's official documentation."
+  toolName="Schema Generator"
+>
+  <div class="mb-8">
+    <h1 class="text-4xl font-bold text-black mb-3">Schema Markup Generator</h1>
+    <p class="text-xl text-gray-600 max-w-2xl">
+      Generate valid JSON-LD you can deploy with confidence. Every required and recommended field is sourced from
+      <a href="https://developers.google.com/search/docs/appearance/structured-data" target="_blank" rel="noopener" class="underline hover:text-black">Google's official structured data documentation</a>.
+    </p>
+  </div>
+
+  <SchemaGenerator client:load />
+
+  <div class="mt-16 bg-gray-50 border border-gray-200 rounded-2xl p-8">
+    <h2 class="text-xl font-bold text-black mb-4">How to use this generator</h2>
+    <ol class="space-y-3 text-gray-700">
+      <li class="flex gap-3"><span class="font-bold text-black flex-shrink-0">1.</span> Select the schema type that matches your content (Product, FAQ, LocalBusiness, or Article).</li>
+      <li class="flex gap-3"><span class="font-bold text-black flex-shrink-0">2.</span> Fill in the required fields (marked with <span class="text-red-500 font-bold">*</span>). Add recommended fields to improve eligibility.</li>
+      <li class="flex gap-3"><span class="font-bold text-black flex-shrink-0">3.</span> Click <strong>Check for Errors</strong> to validate required fields and check for common issues.</li>
+      <li class="flex gap-3"><span class="font-bold text-black flex-shrink-0">4.</span> Copy the generated JSON-LD and paste it into <a href="https://search.google.com/test/rich-results" target="_blank" rel="noopener" class="underline">Google Rich Results Test</a> to confirm eligibility.</li>
+      <li class="flex gap-3"><span class="font-bold text-black flex-shrink-0">5.</span> Add to your page inside a <code class="bg-gray-100 px-1 rounded text-sm">&lt;script type="application/ld+json"&gt;</code> tag — in <code class="bg-gray-100 px-1 rounded text-sm">&lt;head&gt;</code> or <code class="bg-gray-100 px-1 rounded text-sm">&lt;body&gt;</code>.</li>
+    </ol>
+    <p class="mt-6 text-sm text-gray-500">
+      Need more types? See our <a href="/schema-cheat-sheet/" class="underline">Schema.org cheat sheet</a> for 25 types with copy-paste examples.
+    </p>
+  </div>
+</ToolLayout>

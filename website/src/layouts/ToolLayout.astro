@@ -1,0 +1,36 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import { SITE_URL } from '../lib/extension-meta';
+
+interface Props {
+  title: string;
+  description: string;
+  toolName: string;
+}
+
+const { title, description, toolName } = Astro.props;
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL },
+    { "@type": "ListItem", "position": 2, "name": toolName, "item": Astro.url.href },
+  ]
+};
+---
+
+<BaseLayout {title} {description} jsonLd={breadcrumbSchema}>
+  <div class="max-w-6xl mx-auto px-5 sm:px-6 lg:px-8 py-12 sm:py-16">
+    <nav class="mb-8" aria-label="Breadcrumb">
+      <ol class="flex items-center gap-1.5 text-[13px] text-gray-500">
+        <li><a href="/" class="hover:text-gray-800 no-underline transition-colors duration-100">Home</a></li>
+        <li class="text-gray-300" aria-hidden="true">/</li>
+        <li><a href="/tools/" class="hover:text-gray-800 no-underline transition-colors duration-100">Tools</a></li>
+        <li class="text-gray-300" aria-hidden="true">/</li>
+        <li class="text-gray-700 font-medium">{toolName}</li>
+      </ol>
+    </nav>
+    <slot />
+  </div>
+</BaseLayout>

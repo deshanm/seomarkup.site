@@ -1,0 +1,38 @@
+---
+import ToolLayout from '../layouts/ToolLayout.astro';
+import RichResultPreview from '../components/tools/RichResultPreview';
+---
+
+<ToolLayout
+  title="Rich Result Preview — See How Your JSON-LD Looks in Google Search | SEOMarkup"
+  description="Paste any JSON-LD structured data and preview how it might appear as a rich result in Google Search. Includes eligibility checks and an accuracy disclaimer."
+  toolName="Rich Result Preview"
+>
+  <div class="mb-8">
+    <h1 class="text-4xl font-bold text-black mb-3">Rich Result Preview</h1>
+    <p class="text-xl text-gray-600 max-w-2xl">
+      Paste JSON-LD below to see a faithful mock of how it might appear as a rich result in Google Search.
+      Supported types: <strong>Product, FAQ, Recipe, Article, Event, LocalBusiness</strong>.
+    </p>
+  </div>
+
+  <RichResultPreview client:load />
+
+  <div class="mt-16 bg-gray-50 border border-gray-200 rounded-2xl p-8">
+    <h2 class="text-xl font-bold text-black mb-4">About this tool</h2>
+    <div class="grid md:grid-cols-2 gap-8 text-sm text-gray-700">
+      <div>
+        <h3 class="font-semibold text-black mb-2">What the preview shows</h3>
+        <p>The mock is modelled on Google's documented rich result layouts from the <a href="https://developers.google.com/search/docs/appearance/structured-data/search-gallery" target="_blank" rel="noopener" class="underline">Search Gallery</a>. It shows the fields your JSON-LD provides in a visual layout similar to how they appear in Google SERPs.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-black mb-2">What the preview doesn't show</h3>
+        <p>Whether Google will <em>actually</em> show a rich result for your page. That depends on page quality, query intent, and other signals only Google's systems evaluate. Always verify with <a href="https://search.google.com/test/rich-results" target="_blank" rel="noopener" class="underline">Google Rich Results Test</a>.</p>
+      </div>
+    </div>
+    <div class="mt-6 text-sm text-gray-500">
+      Need to generate JSON-LD first? Use the <a href="/schema-generator/" class="underline">Schema Generator</a>.
+      Want to inspect a live page? Use the <a href="https://chromewebstore.google.com/detail/structured-data-schema-in/gaclifbkjcockpefkcjpgggmeolckind" target="_blank" rel="noopener" class="underline">SEOMarkup Chrome Extension</a>.
+    </div>
+  </div>
+</ToolLayout>

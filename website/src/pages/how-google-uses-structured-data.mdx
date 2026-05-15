@@ -1,0 +1,135 @@
+---
+title: "How Google Search Uses Structured Data (Honestly)"
+description: "What structured data actually does for your Google rankings — and what it doesn't. A calibrated look at eligibility, display, and the full verification flow."
+publishedAt: "2026-05-15"
+updatedAt: "2026-05-15"
+author: "Deshan M"
+layout: '../layouts/ArticleLayout.astro'
+---
+
+There's a lot of confident advice online about structured data and Google rankings. Some of it is accurate. Some of it is wishful thinking dressed up as SEO best practice. This guide sticks to what Google's own documentation actually says.
+
+**Sources used throughout this article:**
+- [Google Search Central: How Google Search Works](https://developers.google.com/search/docs/fundamentals/how-search-works)
+- [Google: Structured Data Guidelines](https://developers.google.com/search/docs/appearance/structured-data/sd-policies)
+- [Google: Rich Results documentation](https://developers.google.com/search/docs/appearance/structured-data/search-gallery)
+
+---
+
+## How Google processes a web page
+
+Before we talk about structured data, it helps to understand the pipeline a page goes through before it appears in search results.
+
+**1. Crawl**
+Googlebot downloads a copy of your page. At this point it has the raw HTML. JavaScript-rendered content may not yet be fully processed.
+
+**2. Render**
+Google's rendering service executes JavaScript and builds the full DOM. This is where dynamically-injected JSON-LD becomes visible. Google processes rendering in a queue, so there can be a delay between crawl and render.
+
+**3. Index**
+Google extracts content, links, and structured data from the rendered page. Structured data is parsed here and associated with the page's index entry.
+
+**4. Serve**
+When someone searches, Google selects results from its index. At this stage, Google decides whether to display rich result features for your page — or just a plain link.
+
+The key takeaway: structured data is read at step 3 (indexing), but the *decision to show a rich result* happens at step 4 (serving), and it depends on factors beyond just having valid markup.
+
+---
+
+## What structured data does
+
+Google is explicit about this. From the [structured data guidelines](https://developers.google.com/search/docs/appearance/structured-data/sd-policies):
+
+> "Structured data signals are one of many signals we use to understand page content."
+
+Here's what structured data concretely enables:
+
+**1. Rich result eligibility**
+Certain schema types — Product, Recipe, FAQPage, Event, Review, Article, and others — make your page eligible for rich result features in SERPs: star ratings, pricing badges, FAQ accordions, recipe cards, event dates. You cannot get these without the corresponding structured data.
+
+**2. Entity understanding**
+Structured data helps Google understand what your content *is about* at an entity level. A `Person` schema with a linked `sameAs` to a Wikidata or Wikipedia URL helps Google connect your content to its Knowledge Graph. This can affect how your site is understood, not just how individual pages rank.
+
+**3. Sitelinks search box**
+A `WebSite` schema with a `potentialAction` of type `SearchAction` can trigger a search box below your sitelink in branded search results.
+
+**4. (Indirect) CTR improvement**
+Rich results are visually richer than plain links. A product result with stars and a price tends to get a higher click-through rate than a plain result. Higher CTR can, indirectly, send positive signals to Google — but this is a second-order effect, not a direct ranking factor.
+
+---
+
+## What structured data does NOT do
+
+**1. It does not directly improve your ranking.**
+Google has confirmed this multiple times. From [John Mueller (Google Search Advocate)](https://developers.google.com/search/blog/2020/05/evaluating-page-experience): structured data "doesn't directly affect search rankings." Having valid Product markup does not make your page rank higher for product queries than a page without it.
+
+**2. It does not guarantee a rich result will display.**
+Even if your markup is perfectly valid, Google may choose not to show the rich result. The decision is per-query and depends on factors Google does not fully document. Your page might qualify but Google shows a competitor's rich result instead. You cannot control this.
+
+**3. It is not a penalty escape route.**
+If your page ranks poorly because of thin content, slow load times, or low authority, adding structured data will not fix those problems. The eligibility check is separate from the ranking algorithm.
+
+---
+
+## Eligibility ≠ display
+
+This distinction is important enough to call out separately.
+
+**Eligibility** means your markup is valid and meets Google's documented requirements for a given rich result type. The [Google Rich Results Test](https://search.google.com/test/rich-results) tells you whether you're eligible.
+
+**Display** means Google actually shows the rich result in SERPs. This depends on:
+- The query intent (informational, transactional, navigational)
+- How Google's algorithms evaluate the page's overall quality for that query
+- Competition — other pages targeting the same query, their rich result markup
+- Device type (mobile vs desktop) — rich result formats vary
+
+You can be eligible and never see your rich result appear. You can check Search Console's **Enhancements** reports to see whether Google has detected your structured data and whether it's generating impressions.
+
+---
+
+## The four-step verification flow
+
+Every time you add or change structured data, follow this flow:
+
+**Step 1: Write**
+Add your JSON-LD. Keep it in a `<script type="application/ld+json">` block. Make sure it accurately describes what's on the page (required by policy).
+
+**Step 2: Validate with the schema.org validator**
+[validator.schema.org](https://validator.schema.org/) checks your markup against schema.org type definitions. It will flag unknown properties, wrong value types, and missing required fields from the schema.org spec.
+
+**Step 3: Test with Google Rich Results Test**
+[search.google.com/test/rich-results](https://search.google.com/test/rich-results) checks your markup against Google's specific requirements (which are stricter than schema.org's). This is the authoritative tool. It will show you which rich result types you're eligible for and flag any errors or warnings.
+
+**Step 4: Monitor with Google Search Console**
+Once your page is indexed, the [Enhancements section](https://search.google.com/search-console) shows:
+- Whether Google detected your structured data
+- Whether it generated rich result impressions and clicks
+- Any crawl-time errors in your markup
+
+Do not skip step 4. Eligibility confirmed by the Rich Results Test is a snapshot; Search Console shows you real-world performance.
+
+---
+
+## Frequently asked questions
+
+**Does Google read JSON-LD in `<body>` or only in `<head>`?**
+Both. Google's documentation recommends `<head>` for consistency, but JSON-LD in `<body>` is also supported. Some frameworks inject it at the bottom of `<body>` — this is fine.
+
+**Can I have multiple JSON-LD blocks on one page?**
+Yes. You can have separate `<script type="application/ld+json">` blocks for each type, or combine them in a single block using a `@graph` array. Both approaches are valid.
+
+**Does structured data from JavaScript (rendered via React/Next.js etc.) work?**
+Yes, but with a delay. Google renders JavaScript, but rendering happens in a separate queue from crawling. There can be days between when Googlebot first crawls a page and when it processes the rendered version. For structured data specifically, consider server-side rendering or static rendering so the JSON-LD is in the initial HTML response.
+
+**How often does Google re-read my structured data?**
+As often as it recrawls your page. Recrawl frequency depends on your site's authority, how often you update the page, and your sitemap settings. For high-traffic product pages, this might be daily; for low-traffic blog posts, it might be monthly.
+
+---
+
+## Tools referenced in this article
+
+- [Google Rich Results Test](https://search.google.com/test/rich-results)
+- [Schema.org Validator](https://validator.schema.org/)
+- [Google Search Console](https://search.google.com/search-console)
+- [SEOMarkup Chrome Extension](https://chromewebstore.google.com/detail/structured-data-schema-in/gaclifbkjcockpefkcjpgggmeolckind) — inspect any page's structured data
+- [SEOMarkup Rich Result Preview](/rich-result-preview/) — visualise how your JSON-LD might render

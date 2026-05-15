@@ -1,0 +1,90 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { CHROME_STORE_URL } from '../../lib/extension-meta';
+
+const tools = [
+  {
+    href: '/schema-generator/',
+    icon: '<path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>',
+    title: 'Schema Markup Generator',
+    desc: "Generate valid JSON-LD for Product, FAQ, LocalBusiness, and Article schemas. Every field requirement sourced from Google's official docs.",
+    cta: 'Open Generator',
+    dark: true,
+  },
+  {
+    href: '/rich-result-preview/',
+    icon: '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>',
+    title: 'Rich Result Preview',
+    desc: 'Paste any JSON-LD and see how it might appear in Google Search as a rich result, with eligibility checks and an accuracy disclaimer.',
+    cta: 'Open Preview',
+    dark: false,
+  },
+];
+---
+
+<BaseLayout
+  title="Free Structured Data Tools — JSON-LD Generator & Rich Result Preview | SEOMarkup"
+  description="Free tools to generate valid JSON-LD schema markup and preview how your structured data might appear as rich results in Google Search."
+>
+
+<!-- Page header -->
+<section class="bg-white border-b border-gray-100 pt-14 pb-16 sm:pt-20 sm:pb-20">
+  <div class="max-w-6xl mx-auto px-5 sm:px-6 lg:px-8">
+    <p class="text-[11px] font-mono uppercase tracking-[0.15em] text-gray-500 mb-3">Free tools</p>
+    <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-black tracking-tight text-balance leading-[1.1] mb-4 max-w-2xl">
+      Two tools
+    </h1>
+    <p class="text-base sm:text-lg text-gray-600 leading-[1.6] max-w-xl">
+      Generate valid JSON-LD from a form. Preview how it renders in Google Search. Every field sourced from Google's docs, no signup required.
+    </p>
+  </div>
+</section>
+
+<!-- Tools grid -->
+<section class="bg-gray-50 border-b border-gray-100 py-14 sm:py-20">
+  <div class="max-w-6xl mx-auto px-5 sm:px-6 lg:px-8">
+    <div class="grid md:grid-cols-2 gap-5 md:gap-6">
+      {tools.map(tool => (
+        <a href={tool.href}
+          class={`group rounded-2xl p-7 sm:p-8 flex flex-col gap-5 no-underline transition-[transform,box-shadow,border-color] duration-200 ease-out-strong active:scale-[0.99] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-400 ${tool.dark ? 'bg-black hover:bg-gray-900 border border-gray-800' : 'bg-white border border-gray-200 hover:border-gray-300 hover:shadow-md'}`}>
+          <div class="flex items-center justify-between">
+            <div class={`w-10 h-10 rounded-lg flex items-center justify-center ${tool.dark ? 'bg-yellow-400/10 border border-yellow-400/20' : 'bg-gray-50 border border-gray-200'}`}>
+              <svg class={`w-5 h-5 ${tool.dark ? 'text-yellow-400' : 'text-gray-600'}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={tool.icon} />
+            </div>
+            <svg class={`w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 ${tool.dark ? 'text-gray-600' : 'text-gray-300 group-hover:text-gray-500'}`} viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </div>
+          <div>
+            <h2 class={`text-[19px] font-bold tracking-tight mb-2 leading-snug ${tool.dark ? 'text-white' : 'text-black'}`}>{tool.title}</h2>
+            <p class={`text-[14px] leading-[1.6] ${tool.dark ? 'text-gray-400' : 'text-gray-600'}`}>{tool.desc}</p>
+          </div>
+          <p class={`text-[13px] font-semibold mt-auto inline-flex items-center gap-1.5 ${tool.dark ? 'text-yellow-400' : 'text-black'}`}>
+            {tool.cta}
+            <svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </p>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="bg-white py-14 sm:py-20">
+  <div class="max-w-6xl mx-auto px-5 sm:px-6 lg:px-8">
+    <div class="bg-[#030712] rounded-2xl p-8 sm:p-10 flex flex-col sm:flex-row sm:items-center gap-6 sm:gap-10">
+      <div class="flex-1">
+        <p class="text-[11px] font-mono uppercase tracking-[0.15em] text-yellow-400 mb-2">Free Chrome Extension</p>
+        <h2 class="text-xl sm:text-2xl font-bold text-white tracking-tight mb-2">Inspect structured data on any website</h2>
+        <p class="text-gray-400 text-[14px] leading-relaxed">Every JSON-LD block on any page, parsed and readable. One click, no account.</p>
+      </div>
+      <a
+        href={CHROME_STORE_URL}
+        target="_blank" rel="noopener"
+        class="flex-shrink-0 inline-flex items-center gap-2.5 bg-yellow-400 hover:bg-yellow-300 text-black font-bold py-3.5 px-6 rounded-lg no-underline transition-[background-color,transform] duration-150 ease-out-strong active:scale-[0.97] whitespace-nowrap focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+      >
+        Add to Chrome — Free
+      </a>
+    </div>
+  </div>
+</section>
+
+</BaseLayout>
