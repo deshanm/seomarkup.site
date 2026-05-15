@@ -17,7 +17,7 @@ Instantly view all JSON-LD structured data on the active tab. Supports `@graph` 
 
 **[Install from the Chrome Web Store →](https://chromewebstore.google.com/detail/structured-data-schema-in/gaclifbkjcockpefkcjpgggmeolckind)**
 
-![SEOMarkup extension popup showing BreadcrumbList, Product, and 3DModel schemas with copy and download buttons](website/public/screenshot.png)
+![SEOMarkup extension in action — detecting and displaying JSON-LD schemas on a page](website/public/app-recording.gif)
 
 ### Run locally
 
