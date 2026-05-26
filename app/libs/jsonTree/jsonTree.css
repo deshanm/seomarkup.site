@@ -16,7 +16,8 @@
   margin-left: 0px;
   font-family: "PT Mono", monospace;
   font-size: 13px;
-  display: inline-block;
+  display: block;
+  max-width: 100%;
 }
 
 /* Styles for a list of child nodes */
@@ -59,6 +60,8 @@
 .jsontree_value {
   vertical-align: top;
   display: inline;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 .jsontree_value_null {
   color: #777;
